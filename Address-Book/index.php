@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="inde.php" method="post">
+    <form action="db.php" method="post">
         <label for="nom">Nom</label>
         <input type="text" name="nom">
 
@@ -18,7 +18,27 @@
 
         <label for="nom">Adress</label>
         <input type="text" name="adress">
+
+        <button type="submit">Register</button>
     </form>
+
+    <div>
+        <table>
+            <th>
+                <td>Nom</td>
+                <td>Telephone</td>
+                <td>Email</td>
+                <td>Adress</td>
+            </th>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    
 <?php
 ?>
 </body>
