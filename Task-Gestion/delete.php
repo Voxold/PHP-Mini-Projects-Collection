@@ -15,7 +15,5 @@ if (isset($_GET['id'])) {
         echo "Error deleting record: " . $conn->error;
     }
 
-} else {
-    echo "Invalid request.";
 }
 ?>
