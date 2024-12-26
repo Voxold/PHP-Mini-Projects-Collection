@@ -1,6 +1,7 @@
 <?php
     include('db.php');
     include('register.php');
+    include('delete.php');
 
     $query = "SELECT * FROM task_manager";
     $result = $conn->query($query);
