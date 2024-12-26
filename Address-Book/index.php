@@ -1,5 +1,7 @@
 <?php
     include('db.php');
+    $query = "SELECT * FROM book";
+    $select_result = $conn->query($query)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +18,7 @@
         <div class="form-container mb-4 mt-5">
 
             <h2 class="mb-3">Register</h2>
-
-            <form method="post" class="row g-3">
+            <form action="register.php" method="post" class="row g-3">
                 <div class="col-md-6">
                     <label for="nom" class="form-label">Nom</label>
                     <input type="text" name="nom" id="nom" class="form-control" placeholder="Enter your name" required>
@@ -56,7 +57,7 @@
                 <tbody>
                     <?php
                         if ($select_result->num_rows > 0) {
-                            while ($row = $select_result->fetch_assoc()) {
+                            foreach ($select_result as $row) {
                                 echo "<tr>
                                         <td>{$row['id']}</td>
                                         <td>{$row['nom']}</td>
@@ -73,9 +74,8 @@
             </table>
         </div>
     </div>
-    
 
-    <!-- Bootstrap JS (Optional) -->
+    <!-- Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
