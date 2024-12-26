@@ -1,10 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $nom = $_POST['nom'] ?? '';
-    $telephone = $_POST['telephone'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $adress = $_POST['adress'] ?? '';
-
     // Database Connection
     $servername = 'localhost';
     $username = 'root';
@@ -16,22 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        $nom = $_POST['nom'] ?? '';
+        $telephone = $_POST['telephone'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $adress = $_POST['adress'] ?? '';
+    }
     
     // Insert database
     $insert_sql = "INSERT INTO book (nom, telephone, email, adress) VALUES ('$nom', '$telephone', '$email', '$adress')";
     $insert_result = $conn->query($insert_sql);
 
-    if ($insert_result === true) {
-        echo "Create Succesfully";
-    }else{
-        echo "error";
-    }
+    $select_sql = "SELECT * FROM book";
+    $select_result = $conn->query($select_sql);
 
-    // close connection
-    $conn->close();
+     // close connection
+     $conn->close();
 
-}else{
-    echo "No form data submitted.";
-}
 
 ?>
