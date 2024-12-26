@@ -1,4 +1,6 @@
-# Address Book  
+# Address Book 
+![image](https://github.com/user-attachments/assets/2dbb16ae-3ff4-406b-8f87-35dcd6e5f3df)
+
 
 ## Description  
 The Address Book project is a simple PHP application designed to manage personal and professional contacts. It allows users to add, update, delete, and view contact details like name, phone number, email, and address, providing an excellent introduction to CRUD operations with PHP and MySQL.  
