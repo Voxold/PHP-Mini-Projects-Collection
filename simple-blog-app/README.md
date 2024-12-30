@@ -54,3 +54,8 @@ Here’s an overview of the project files:
 ├── database.sql      # SQL file to set up the database
 
 ```
+
+## ✨ Acknowledgments
+
+Thank you to all contributors and users for supporting this project.
+The Simple Blog Application is designed to be an easy-to-use platform for creating and managing blog content.
