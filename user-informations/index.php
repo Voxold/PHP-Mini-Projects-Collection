@@ -21,7 +21,7 @@ $result = $conn->query($query);
         <h1 class="text-center mb-4">Exercise Manager</h1>
         
         <fieldset class="border p-4 mb-4">
-            <legend class="float-none w-auto px-2">Add New Exercise</legend>
+            <legend class="float-none w-auto px-2">Ajouter un nouvel exercice</legend>
             <form action="register.php" method="POST">
                 <div class="mb-3">
                     <label for="title" class="form-label">Titre de l'exercice</label>
