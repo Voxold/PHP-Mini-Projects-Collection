@@ -1,11 +1,41 @@
 <?php require('includes/header.php'); ?>
+<?php require('includes/footer.php'); ?>
+<?php require('config.php'); ?>
 
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
 
+        $error = '';
+        if ($_POST['password'] !== $_POST['c-password']){
+            $error = 'Passwords do not match!';
+        }else{
+            $username = strtolower($_POST['username']) ;
+            $email = $_POST['email'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $date = new DateTime();
+            $formattedDate = $date->format('Y-m-d H:i:s');
+
+            try {
+                $query = "INSERT INTO users (username,email,password,date_created) VALUES (:username, :email, :password, :date_created)";
+
+                $insert = $conn->prepare($query);
+                $insert->execute([
+                        ':username' => $username,
+                        ':email' => $email,
+                        ':password' => $password,
+                        ':date_created' => date('Y-m-d H:i:s')
+                ]);
+
+                // Redirect to login page
+                header("Location: login.php");
+                echo 'User registered successfully!';
+                exit();
+                    
+            }catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+        
     }
 ?>
 
@@ -26,12 +56,20 @@
             
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
-                <input type="text" name="password" class="form-control" placeholder="Enter Your Password" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter Your Password" required><br>
+                <!-- Display error message -->
+                <?php if ($error): ?>
+                        <p class="text-danger"><?= $error ?></p>
+                <?php endif; ?>
             </div>
             
             <div class="mb-3">
                 <label for="" class="form-label">Confirme Password</label>
-                <input type="text" name="c-password" class="form-control" placeholder="Confirme You Passwrod" required>
+                <input type="password" name="c-password" class="form-control" placeholder="Confirme You Passwrod" required>
+                <!-- Display error message -->
+                <?php if ($error): ?>
+                        <p class="text-danger"><?= $error ?></p>
+                <?php endif; ?>
             </div>
             
 
@@ -39,5 +77,9 @@
 
         </form>
     </main>
+
+    <?php
+
+    ?>
 
 <?php require('includes/footer.php'); ?>
